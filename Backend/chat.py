@@ -6,17 +6,17 @@ from typing import TypedDict
 load_dotenv()
 
 
-#Research agent → gathers info
+model=ChatCerebras(model='qwen-3-32b')
+
+template="""you are a teacher who explain the history topic the student give you the {topic} and also the student tell the topic difficulty level {level} and student also tell you in how many words you nned tom explain the words{number_of_words}"""
 
 
+prompt=PromptTemplate(
+    template=template,
+    input_variables=['topic','level','number_of_words']
+)
 
+final_prompt=prompt.invoke({'topic':'history of shivaji maharaj','level':'easy','number_of_words':'100'})
 
-
-
-#Summarizer agent → condenses
-
-
-
-
-#Fact-checker agent → validates
-
+result=model.invoke(final_prompt)
+print(result.content)
