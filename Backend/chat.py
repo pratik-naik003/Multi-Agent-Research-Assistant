@@ -16,7 +16,10 @@ prompt=PromptTemplate(
     input_variables=['topic','level','number_of_words']
 )
 
-final_prompt=prompt.invoke({'topic':'history of shivaji maharaj','level':'easy','number_of_words':'100'})
+topic=input("enter the topic name")
+level=input("enter the difficulty level ")
+words=int(input("tell me how many words"))
+final_prompt=prompt.invoke({'topic':topic,'level':level,'number_of_words':words})
 
 result=model.invoke(final_prompt)
 print(result.content)
